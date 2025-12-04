@@ -1,6 +1,6 @@
-# 🐘 Linux ChangePHP Script - Advanced Edition
+# 🐘 Linux ChangePHP Script
 
-A powerful, interactive bash script to easily switch between multiple PHP versions on Ubuntu/Debian systems with advanced features for professional developers.
+A simple, interactive bash script to easily switch between multiple PHP versions on Ubuntu/Debian systems.
 
 ![PHP Version Switcher](https://img.shields.io/badge/PHP-Switcher-777BB4?style=for-the-badge&logo=php&logoColor=white)
 ![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)
@@ -8,59 +8,18 @@ A powerful, interactive bash script to easily switch between multiple PHP versio
 
 ## ✨ Features
 
-### Core Features
-- 🔍 **Auto-detects** all installed PHP versions by reading actual `php -v` output
-- 🎯 **Interactive TUI menu** with numbered selection and color-coded status
-- 🎨 **Beautiful color-coded output** for better visibility and UX
-- ⚡ **Quick switching** between PHP versions with zero conflicts
-- 🔧 **Updates CLI, Apache, and Nginx** configurations automatically
-- 🔄 **Smart service management** - auto-restarts only active services
-- 💡 **Shows current active version** with real-time status
-
-### Advanced Features ✨
-- ✅ **Fully correct PHP-FPM switching** - Stops old versions, starts new, prevents mixed versions
-- ✅ **Apache switching without touching unrelated modules** - Only manages PHP modules
-- ✅ **Works even when phpize, phar, or php-config binaries are missing** - Graceful handling
-- ✅ **Nginx configuration warnings** - Reminds about fastcgi_pass updates
-- ✅ **Multi-environment support** - Works with Apache, Nginx, both, or CLI only
-- ✅ **Safe operations** - Prevents breaking the system accidentally
-- ✅ **Advanced menu system** with additional utilities:
-  - 📦 **Install PHP versions** directly from the script
-  - 🔌 **Install missing PHP-FPM** for existing PHP installations
-  - 📋 **Show all PHP modules** installed across versions
-  - 🔄 **Sync modules between versions** - Copy extensions from one version to another
-  - 📊 **Service status check** - See all PHP-FPM, Apache, and Nginx status at a glance
-
-## 🎥 Demo
-
-```
-================================================================
-              PHP Version Switcher - Advanced
-================================================================
-
-System Information:
-
-✓ Apache is installed and running
-✓ Nginx is installed and running
-
-Current PHP version: 8.1
-
-Available PHP versions:
-
-  1. PHP 7.4 [FPM: stopped]
-  2. PHP 8.1 (current) [FPM: running]
-  3. PHP 8.2 [FPM: stopped]
-  4. PHP 8.3 [FPM: not installed]
-
-  0. Exit
-
-Select version number (1-4) or 'a' for advanced: 
-```
+- 🔍 **Auto-detects** all installed PHP versions
+- 🎯 **Interactive menu** with numbered selection
+- 🎨 **Color-coded output** for better visibility
+- ⚡ **Quick switching** between PHP versions
+- 🔧 **Updates both CLI and web server** configurations
+- 🔄 **Auto-restarts services** (Apache/Nginx/PHP-FPM)
+- 💡 **Shows current active version**
 
 ## 📋 Prerequisites
 
-- Ubuntu/Debian-based Linux distribution (18.04+)
-- Multiple PHP versions installed (or use built-in installer)
+- Ubuntu/Debian-based Linux distribution
+- Multiple PHP versions installed
 - `sudo` privileges
 - Apache or Nginx (optional, for web server PHP switching)
 
@@ -69,106 +28,65 @@ Select version number (1-4) or 'a' for advanced:
 ### Method 1: One-Line Install (Recommended)
 
 ```bash
-git clone https://github.com/sahilkappu/Linux-ChangePHP-Script.git && cd Linux-ChangePHP-Script && chmod +x install.sh && ./install.sh
+git clone https://github.com/sahilkappu/Linux-ChangePHP-Script.git && cd Linux-ChangePHP-Script && chmod +x changephp.sh && sudo cp changephp.sh /usr/local/bin/changephp && cd .. && rm -rf Linux-ChangePHP-Script && changephp
 ```
 
-### Method 2: Manual Installation
+### Method 2: Step-by-Step Installation
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/sahilkappu/Linux-ChangePHP-Script.git
+   ```
+
+2. **Navigate to the directory:**
+
+   ```bash
+   cd Linux-ChangePHP-Script
+   ```
+
+3. **Make it executable:**
+
+   ```bash
+   chmod +x changephp.sh
+   ```
+
+4. **Copy to system bin:**
+
+   ```bash
+   sudo cp changephp.sh /usr/local/bin/changephp
+   ```
+
+5. **Clean up (optional):**
+
+   ```bash
+   cd ..
+   rm -rf Linux-ChangePHP-Script
+   ```
+
+6. **Run the command:**
+   ```bash
+   changephp
+   ```
+
+### Method 3: Direct Download (if wget works)
 
 ```bash
-# Clone the repository
-git clone https://github.com/sahilkappu/Linux-ChangePHP-Script.git
+# Download directly
+wget https://raw.githubusercontent.com/sahilkappu/Linux-ChangePHP-Script/main/changephp.sh
 
-# Navigate to directory
-cd Linux-ChangePHP-Script
+# Or using curl
+curl -o changephp.sh https://raw.githubusercontent.com/sahilkappu/Linux-ChangePHP-Script/main/changephp.sh
 
-# Run installer
-chmod +x install.sh
-./install.sh
-```
-
-### Method 3: Direct Installation
-
-```bash
-# Clone repository
-git clone https://github.com/sahilkappu/Linux-ChangePHP-Script.git
-cd Linux-ChangePHP-Script
-
-# Copy script
-sudo cp changephp.sh /usr/local/bin/changephp
-
-# Make executable
-sudo chmod +x /usr/local/bin/changephp
-
-# Run it
-changephp
-```
-
-## 💻 Usage
-
-### Basic Usage
-
-Simply run the command:
-
-```bash
-changephp
-```
-
-### Advanced Features
-
-Press **'a'** in the main menu to access advanced options:
-
-```
-Advanced Options:
-
-  1. Install PHP versions
-  2. Install missing PHP-FPM
-  3. Show PHP modules for all versions
-  4. Sync modules between versions
-  5. Service status check
-  0. Back to main menu
-```
-
-### Example Workflows
-
-#### Workflow 1: Install and Switch to PHP 8.3
-```bash
-changephp
-# Press 'a' for advanced menu
-# Select '1' to install PHP versions
-# Enter: 8.3
-# Wait for installation
-# Press '0' to go back
-# Select PHP 8.3 from main menu
-```
-
-#### Workflow 2: Copy Extensions from 8.1 to 8.2
-```bash
-changephp
-# Press 'a' for advanced menu
-# Select '4' for sync modules
-# Source: 2 (PHP 8.1)
-# Target: 3 (PHP 8.2)
-# Wait for installation
-```
-
-#### Workflow 3: Check Service Status
-```bash
-changephp
-# Press 'a' for advanced menu
-# Select '5' for service status
-# View all services
+# Make executable and install
+chmod +x changephp.sh
+sudo mv changephp.sh /usr/local/bin/changephp
 ```
 
 ## 📦 Installing Multiple PHP Versions
 
-### Using Built-in Installer (Recommended)
-1. Run `changephp`
-2. Press **'a'** for advanced menu
-3. Select **'1'** for "Install PHP versions"
-4. Enter versions (e.g., `8.1 8.2 8.3`)
-5. Wait for automatic installation
+If you don't have multiple PHP versions installed yet, use these commands:
 
-### Manual Installation
 ```bash
 # Add Ondřej Surý's PHP repository
 sudo add-apt-repository ppa:ondrej/php -y
@@ -181,138 +99,132 @@ sudo apt install -y php8.2 php8.2-cli php8.2-fpm php8.2-common
 sudo apt install -y php8.3 php8.3-cli php8.3-fpm php8.3-common
 
 # Install common extensions for each version
-sudo apt install -y php7.4-{mysql,curl,xml,mbstring,zip,gd,bcmath,intl,soap}
-sudo apt install -y php8.1-{mysql,curl,xml,mbstring,zip,gd,bcmath,intl,soap}
-sudo apt install -y php8.2-{mysql,curl,xml,mbstring,zip,gd,bcmath,intl,soap}
-sudo apt install -y php8.3-{mysql,curl,xml,mbstring,zip,gd,bcmath,intl,soap}
+sudo apt install -y php7.4-{mysql,curl,xml,mbstring,zip,gd,bcmath}
+sudo apt install -y php8.1-{mysql,curl,xml,mbstring,zip,gd,bcmath}
+sudo apt install -y php8.2-{mysql,curl,xml,mbstring,zip,gd,bcmath}
+sudo apt install -y php8.3-{mysql,curl,xml,mbstring,zip,gd,bcmath}
+```
+
+## 💻 Usage
+
+Simply run the command:
+
+```bash
+changephp
+```
+
+### Example Output
+
+```
+================================================
+         PHP Version Switcher
+================================================
+
+Current PHP version: 8.1
+
+Available PHP versions:
+
+  1. PHP 7.4
+  2. PHP 8.1 (current)
+  3. PHP 8.2
+  4. PHP 8.3
+
+Select version number (1-4): 3
+
+Switching to PHP 8.2...
+✓ Apache module enabled for PHP 8.2
+✓ CLI version set to PHP 8.2
+✓ Apache restarted
+✓ PHP 8.2 is now active!
+
+PHP 8.2.15 (cli) (built: Jan 20 2024 14:17:05) (NTS)
 ```
 
 ## 🔧 What It Does
 
-### Version Switching Process
+The script automatically:
 
-1. **Detects installed versions** - Scans system for all PHP installations
-2. **Shows current status** - Displays active version and FPM status
-3. **Stops old PHP-FPM** - Cleanly stops all running PHP-FPM services
-4. **Updates CLI alternatives** - Changes default `php` command
-5. **Configures Apache** - Switches mod_php (if Apache is used)
-6. **Starts new PHP-FPM** - Activates FPM for selected version
-7. **Restarts web servers** - Reloads Apache/Nginx if running
-8. **Verifies switch** - Confirms new version is active
+1. Detects all installed PHP versions on your system
+2. Displays them in an easy-to-read numbered list
+3. Highlights the currently active version
+4. Switches PHP CLI version using `update-alternatives`
+5. Switches Apache `mod_php` module (if Apache is installed)
+6. Restarts PHP-FPM service for the selected version
+7. Restarts Nginx (if running)
+8. Restarts Apache (if running)
 
-### Supported Configurations
+## 🛠️ Supported Configurations
 
 - ✅ Apache with mod_php
 - ✅ Nginx with PHP-FPM
-- ✅ Apache + PHP-FPM
-- ✅ PHP CLI only
-- ✅ Mixed environments (Apache + Nginx)
-- ✅ Multiple PHP versions installed
-- ✅ Partial installations (missing FPM)
-
-## 🛡️ Safety Features
-
-- 🔒 **Prevents running as root** - Requires sudo only when needed
-- 🔒 **Validates all inputs** - Prevents invalid selections
-- 🔒 **Graceful error handling** - Won't break existing configuration
-- 🔒 **Service state awareness** - Only restarts active services
-- 🔒 **Conflict prevention** - Stops old FPM before starting new
-- 🔒 **Nginx warnings** - Alerts about manual configuration needs
-
-## 📊 Advanced Features Explained
-
-### 1. Install PHP Versions
-Automatically adds the Ondřej Surý repository and installs:
-- PHP core packages (cli, common, fpm)
-- Essential extensions (mysql, curl, xml, mbstring, zip, gd, bcmath, intl, soap)
-- Configures services automatically
-
-### 2. Install Missing PHP-FPM
-- Scans for PHP versions without FPM
-- Offers to install missing FPM packages
-- Enables and starts services
-
-### 3. Show PHP Modules
-- Lists all installed modules for each PHP version
-- Helps identify missing extensions
-- Useful for debugging
-
-### 4. Sync Modules Between Versions
-- Copies extensions from one version to another
-- Automatically installs missing packages
-- Perfect for maintaining consistency
-
-### 5. Service Status Check
-- Shows Apache status (running/stopped/not installed)
-- Shows Nginx status (running/stopped/not installed)
-- Shows PHP-FPM status for all versions
-- Real-time service monitoring
+- ✅ PHP CLI (Command Line Interface)
+- ✅ Multiple PHP versions from Ondřej Surý's repository
 
 ## ⚠️ Troubleshooting
 
 ### Command not found
-```bash
-# Check if installed
-which changephp
 
-# Reinstall
-git clone https://github.com/sahilkappu/Linux-ChangePHP-Script.git
-cd Linux-ChangePHP-Script
-./install.sh
+```bash
+# Check if file exists and is executable
+ls -l /usr/local/bin/changephp
+
+# Make it executable
+sudo chmod +x /usr/local/bin/changephp
+
+# Check if /usr/local/bin is in PATH
+echo $PATH
 ```
 
 ### No PHP versions detected
+
 ```bash
-# Check installations
-dpkg -l | grep php | grep ^ii
+# Verify PHP installations
+ls /usr/bin/php*
 
-# Install PHP via script
-changephp
-# Press 'a', then '1'
+# Check installed PHP packages
+dpkg -l | grep php
 ```
 
-### FPM won't start
+### Permission denied
+
 ```bash
-# Check FPM service
-systemctl status php8.1-fpm
-
-# View logs
-journalctl -u php8.1-fpm -n 50
-
-# Reinstall FPM
-sudo apt install --reinstall php8.1-fpm
+# The script needs sudo privileges for switching versions
+# Make sure you can run sudo commands
+sudo -v
 ```
 
-### Nginx not switching
-The script will show this warning:
-```
-⚠ IMPORTANT: Check your Nginx configuration!
-ℹ Update fastcgi_pass to: unix:/var/run/php/php8.2-fpm.sock
-```
+### Git clone not working
 
-Edit your Nginx config:
 ```bash
-sudo nano /etc/nginx/sites-available/default
+# If you don't have git installed
+sudo apt update
+sudo apt install git -y
 
-# Change:
-fastcgi_pass unix:/var/run/php/php8.2-fpm.sock;
-
-# Then:
-sudo nginx -t
-sudo systemctl reload nginx
+# Then try cloning again
+git clone https://github.com/sahilkappu/Linux-ChangePHP-Script.git
 ```
 
 ## 🔄 Updating
 
+To update to the latest version:
+
 ```bash
+# Method 1: Using git
 cd /tmp
 git clone https://github.com/sahilkappu/Linux-ChangePHP-Script.git
 cd Linux-ChangePHP-Script
 sudo cp changephp.sh /usr/local/bin/changephp
+chmod +x /usr/local/bin/changephp
+
+# Method 2: Direct download
+wget https://raw.githubusercontent.com/sahilkappu/Linux-ChangePHP-Script/main/changephp.sh -O /tmp/changephp.sh
+sudo cp /tmp/changephp.sh /usr/local/bin/changephp
 sudo chmod +x /usr/local/bin/changephp
 ```
 
 ## 🗑️ Uninstallation
+
+To remove the script:
 
 ```bash
 sudo rm /usr/local/bin/changephp
@@ -320,12 +232,12 @@ sudo rm /usr/local/bin/changephp
 
 ## 🤝 Contributing
 
-Contributions are welcome! Here's how:
+Contributions are welcome! Feel free to:
 
 1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
 ## 📝 License
@@ -335,30 +247,19 @@ This project is open source and available under the [MIT License](LICENSE).
 ## 👨‍💻 Author
 
 **Sahil Kappu**
+
 - GitHub: [@sahilkappu](https://github.com/sahilkappu)
 - Repository: [Linux-ChangePHP-Script](https://github.com/sahilkappu/Linux-ChangePHP-Script)
 
 ## 🌟 Show Your Support
 
-Give a ⭐️ if this project helped you!
+If you found this helpful, please give it a ⭐️!
 
 ## 📚 Related Resources
 
 - [PHP Official Website](https://www.php.net/)
 - [Ondřej Surý's PHP PPA](https://launchpad.net/~ondrej/+archive/ubuntu/php)
 - [PHP Version Support](https://www.php.net/supported-versions.php)
-- [PHP-FPM Configuration](https://www.php.net/manual/en/install.fpm.php)
-- [Nginx PHP-FPM Setup](https://www.nginx.com/resources/wiki/start/topics/examples/phpfcgi/)
-
-## 🎯 Roadmap
-
-- [ ] Debian package (.deb) installer
-- [ ] GUI version using dialog/whiptail
-- [ ] Configuration backup/restore
-- [ ] PHP.ini synchronization between versions
-- [ ] Automatic Nginx config updates
-- [ ] Performance testing for each version
-- [ ] Docker support
 
 ---
 
