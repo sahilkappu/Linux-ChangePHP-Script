@@ -25,36 +25,63 @@ A simple, interactive bash script to easily switch between multiple PHP versions
 
 ## 🚀 Quick Installation
 
-### One-Line Install
+### Method 1: One-Line Install (Recommended)
 
 ```bash
-wget -O /tmp/changephp.sh https://raw.githubusercontent.com/sahilkappu/Linux-ChangePHP-Script/main/changephp.sh && sudo chmod +x /tmp/changephp.sh && sudo mv /tmp/changephp.sh /usr/local/bin/changephp && changephp
+git clone https://github.com/sahilkappu/Linux-ChangePHP-Script.git && cd Linux-ChangePHP-Script && chmod +x changephp.sh && sudo cp changephp.sh /usr/local/bin/changephp && cd .. && rm -rf Linux-ChangePHP-Script && changephp
 ```
 
-### Step-by-Step Installation
+### Method 2: Step-by-Step Installation
 
-1. **Download the script:**
+1. **Clone the repository:**
 
    ```bash
-   wget https://raw.githubusercontent.com/sahilkappu/Linux-ChangePHP-Script/main/changephp.sh
+   git clone https://github.com/sahilkappu/Linux-ChangePHP-Script.git
    ```
 
-2. **Make it executable:**
+2. **Navigate to the directory:**
+
+   ```bash
+   cd Linux-ChangePHP-Script
+   ```
+
+3. **Make it executable:**
 
    ```bash
    chmod +x changephp.sh
    ```
 
-3. **Move to system bin:**
+4. **Copy to system bin:**
 
    ```bash
-   sudo mv changephp.sh /usr/local/bin/changephp
+   sudo cp changephp.sh /usr/local/bin/changephp
    ```
 
-4. **Run the command:**
+5. **Clean up (optional):**
+
+   ```bash
+   cd ..
+   rm -rf Linux-ChangePHP-Script
+   ```
+
+6. **Run the command:**
    ```bash
    changephp
    ```
+
+### Method 3: Direct Download (if wget works)
+
+```bash
+# Download directly
+wget https://raw.githubusercontent.com/sahilkappu/Linux-ChangePHP-Script/main/changephp.sh
+
+# Or using curl
+curl -o changephp.sh https://raw.githubusercontent.com/sahilkappu/Linux-ChangePHP-Script/main/changephp.sh
+
+# Make executable and install
+chmod +x changephp.sh
+sudo mv changephp.sh /usr/local/bin/changephp
+```
 
 ## 📦 Installing Multiple PHP Versions
 
@@ -65,15 +92,17 @@ If you don't have multiple PHP versions installed yet, use these commands:
 sudo add-apt-repository ppa:ondrej/php -y
 sudo apt update
 
-# Install PHP versions (example: 7.4, 8.1, 8.2)
+# Install PHP versions (example: 7.4, 8.1, 8.2, 8.3)
 sudo apt install -y php7.4 php7.4-cli php7.4-fpm php7.4-common
 sudo apt install -y php8.1 php8.1-cli php8.1-fpm php8.1-common
 sudo apt install -y php8.2 php8.2-cli php8.2-fpm php8.2-common
+sudo apt install -y php8.3 php8.3-cli php8.3-fpm php8.3-common
 
 # Install common extensions for each version
 sudo apt install -y php7.4-{mysql,curl,xml,mbstring,zip,gd,bcmath}
 sudo apt install -y php8.1-{mysql,curl,xml,mbstring,zip,gd,bcmath}
 sudo apt install -y php8.2-{mysql,curl,xml,mbstring,zip,gd,bcmath}
+sudo apt install -y php8.3-{mysql,curl,xml,mbstring,zip,gd,bcmath}
 ```
 
 ## 💻 Usage
@@ -98,8 +127,9 @@ Available PHP versions:
   1. PHP 7.4
   2. PHP 8.1 (current)
   3. PHP 8.2
+  4. PHP 8.3
 
-Select version number (1-3): 3
+Select version number (1-4): 3
 
 Switching to PHP 8.2...
 ✓ Apache module enabled for PHP 8.2
@@ -161,6 +191,43 @@ dpkg -l | grep php
 # The script needs sudo privileges for switching versions
 # Make sure you can run sudo commands
 sudo -v
+```
+
+### Git clone not working
+
+```bash
+# If you don't have git installed
+sudo apt update
+sudo apt install git -y
+
+# Then try cloning again
+git clone https://github.com/sahilkappu/Linux-ChangePHP-Script.git
+```
+
+## 🔄 Updating
+
+To update to the latest version:
+
+```bash
+# Method 1: Using git
+cd /tmp
+git clone https://github.com/sahilkappu/Linux-ChangePHP-Script.git
+cd Linux-ChangePHP-Script
+sudo cp changephp.sh /usr/local/bin/changephp
+chmod +x /usr/local/bin/changephp
+
+# Method 2: Direct download
+wget https://raw.githubusercontent.com/sahilkappu/Linux-ChangePHP-Script/main/changephp.sh -O /tmp/changephp.sh
+sudo cp /tmp/changephp.sh /usr/local/bin/changephp
+sudo chmod +x /usr/local/bin/changephp
+```
+
+## 🗑️ Uninstallation
+
+To remove the script:
+
+```bash
+sudo rm /usr/local/bin/changephp
 ```
 
 ## 🤝 Contributing
